@@ -14,3 +14,7 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
+	echo "Hello, I am a student." > sample.txt
+
+run:
+	./assignment1
