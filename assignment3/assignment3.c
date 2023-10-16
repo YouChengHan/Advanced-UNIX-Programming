@@ -10,6 +10,11 @@ typedef struct {
 	size_t off;    // the offset of current data
 } fmem_cookie;
 
+static int fmem_read(void *cookie, char *buf, int size);
+static int fmem_write(void *cookie, const char *buf, int size);
+static fpos_t fmem_seek(void *cookie, fpos_t offset, int whence);
+static int fmem_close(void *cookie);
+
 FILE *fmem_fmemopen(void *buf, size_t size, const char *mode) {
 	
 	fmem_cookie *ck=malloc(sizeof(fmem_cookie));
@@ -42,7 +47,7 @@ static int fmem_read(void *cookie, char *buf, int size) {
 	return size;
 }
 
-static int fmem_write(void *cookie, char *buf, int size) {
+static int fmem_write(void *cookie, const char *buf, int size) {
 
 	fmem_cookie *ck=cookie;
 
@@ -109,11 +114,11 @@ int main() {
 	FILE *fp=fmem_fmemopen(fs, 256, "w+");
 
 	fprintf(fp, "hello, world");                 // write "hello, world" in the file stream
-	fseek(fp, 6, SEEK_SET);                      // seek the position of "world"
-	fread(buf, strlen("hello"), 1, fs);          // read "world" from file stream
+	fseek(fp, 7, SEEK_SET);                      // seek the position of "world"
+	fread(buf, strlen("hello"), 1, fp);          // read "world" from file stream
 	printf("%s\n", buf);
 	fseek(fp, 0, SEEK_SET);
-	fread(buf, strlen("hello, world"), 1, fs);   // read whole sentence from file stream
+	fread(buf, strlen("hello, world"), 1, fp);   // read whole sentence from file stream
 	printf("%s\n", buf);
 
 	fclose(fp);
