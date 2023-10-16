@@ -4,10 +4,10 @@
 #include <errno.h>
 
 typedef struct {
-	char *buf;     // the pointer to the memory
-	size_t size;   // the size of the buffer
-	size_t len;    // the length of the data
-	size_t off;    // the offset of current data
+	char *buf;     // pointer points to the memory
+	size_t size;   // size of the buffer
+	size_t len;    // length of the data
+	size_t off;    // offset of current data
 } fmem_cookie;
 
 static int fmem_read(void *cookie, char *buf, int size);
