@@ -19,13 +19,18 @@ FILE *fmem_fmemopen(void *buf, size_t size, const char *mode) {
 	
 	fmem_cookie *ck=malloc(sizeof(fmem_cookie));
 	if(!ck) {
-		perror("malloc");
+		perror("cookie malloc");
 		return NULL;
 	}
 	memset(ck, 0, sizeof(fmem_cookie));
 
 	ck->buf=buf;
 	ck->buf=malloc(size);
+	if(!ck->buf) {
+		free(ck);
+		perror("buffer malloc");
+		return NULL;
+	}
 	ck->size=size;
 	ck->len=0;
 	ck->off=0;
