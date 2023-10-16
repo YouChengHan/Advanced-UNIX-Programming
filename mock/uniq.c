@@ -33,6 +33,10 @@ int main(int argc, char *argv[]) {
 	fgets(buf, 1024, fp);
 	strcpy(org, buf);
 	while(fgets(buf, 1024, fp)) {
+		if(buf[strlen(buf)-1]!='\n') {
+			buf[strlen(buf)]='\n';
+			buf[strlen(buf)+1]='\0';
+		}
 		if(iflag) {
 			char tmp[1024]="";
 			strcpy(tmp, org);
