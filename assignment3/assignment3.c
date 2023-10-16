@@ -115,7 +115,7 @@ int main() {
 
 	fprintf(fp, "hello, world");                 // write "hello, world" in the file stream
 	fseek(fp, 7, SEEK_SET);                      // seek the position of "world"
-	fread(buf, strlen("hello"), 1, fp);          // read "world" from file stream
+	fread(buf, strlen("world"), 1, fp);          // read "world" from file stream
 	printf("%s\n", buf);
 	fseek(fp, 0, SEEK_SET);
 	fread(buf, strlen("hello, world"), 1, fp);   // read whole sentence from file stream
