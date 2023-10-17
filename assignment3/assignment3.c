@@ -61,7 +61,7 @@ static int fmem_write(void *cookie, const char *buf, int size) {
 	ck->off+=size;
 	if(ck->off>ck->len) {
 		ck->len=ck->off;
-		if(ck->size>ck->size) ck->buf[ck->len]='\0';
+		ck->buf[ck->off]='\0';
 	}
 	//ck->len=ck->off>ck->len?ck->off:ck->len;
 	//ck->buf[ck->off]='\0';
