@@ -20,7 +20,6 @@ void my_pthread_barrier_wait() {
 void *func(void *arg) {
 
 	my_pthread_barrier_wait();
-	// FreeBSD only need 4 bytes int.
 	printf("Thread %lu running\n", (unsigned long)pthread_self());
 
 	pthread_exit(NULL);
