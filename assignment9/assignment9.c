@@ -32,6 +32,10 @@ int main() {
 
 	pthread_t threads[THREAD_SIZE];
 	for(int i=0; i<THREAD_SIZE; ++i) {
+		// Seems FreeBSD implementation will exec all statements in for before thread_create,
+		// since all "Starting thread" will be printed out first no matter
+		// pthread_barrier_wait() is called or not.
+		// The thread schedule is applied while all thread functions are ready.
 		printf("Starting thread %d\n", i);
 		if(pthread_create(&threads[i], NULL, func, NULL)!=0) {
 			fprintf(stderr, "Create thread[%d] error\n", i);
