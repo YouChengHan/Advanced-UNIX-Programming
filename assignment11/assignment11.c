@@ -10,7 +10,7 @@ int main() {
 	char *cmd="assignment11d";
 	daemonize(cmd);
 
-	// need to use abolute path since the working directory has been set to root. (detached)
+	// need to use absolute path since the working directory has been set to root. (detached)
 	FILE *fp=fopen("/home/kevin/UNIX/assignment11/assignment11.txt", "w");
 	char *name=getlogin();
 	fprintf(fp, "Login name: %s\n", name);
